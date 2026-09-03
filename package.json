@@ -1,0 +1,21 @@
+{
+  "name": "dyptem-sih-portal",
+  "version": "3.0.2",
+  "description": "D Y Patil School of Engineering and Management Smart India Hackathon Portal",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "sih",
+    "hackathon",
+    "dypsem",
+    "kolhapur"
+  ],
+  "author": "DYPSEM SIH Technical Committee",
+  "license": "MIT"
+}
