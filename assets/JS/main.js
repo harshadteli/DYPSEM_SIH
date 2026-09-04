@@ -350,13 +350,16 @@ document.addEventListener('DOMContentLoaded', () => {
   let isTyping = false;
 
   // Multilingual Knowledge Base & Content
+  // Multilingual Knowledge Base & Content
   const chatData = {
     en: {
-      welcome: "Hello! I am your <strong>SIH Assistant</strong> for India Smart Hackathon at <strong>D Y Patil School of Engineering and Management (DYPSEM Kolhapur)</strong>. The grand finale is on <strong>11 September 2026</strong>. How can I help you today?",
-      placeholder: "Ask about SIH, date, registration, tracks, roadmap...",
+      welcome: "Hello! I am your <strong>SIH Assistant</strong> for India Smart Hackathon at <strong>D Y Patil School of Engineering and Management (DYPSEM Kolhapur)</strong>. ⏰ <strong>Last Date to Register is 8 September 2026</strong>. Grand Finale is on <strong>11 September 2026</strong>. How can I help you today?",
+      placeholder: "Ask about SIH, deadline, registration, tracks, roadmap...",
       suggestionsHeader: "Quick Questions:",
       suggestions: [
-        "📅 When is the event?",
+        "⏰ Last Date to Register?",
+        "📷 Official Instagram Page",
+        "📅 When is the Grand Finale?",
         "🗺️ Nodal Center Roadmap",
         "📝 How do I register?",
         "📞 Contact Coordinators",
@@ -365,37 +368,37 @@ document.addEventListener('DOMContentLoaded', () => {
         "👥 What is the team size?",
         "🎯 What are the tracks?",
         "🖼️ View Official Poster",
-        "💡 9 Evaluation Criteria",
-        "🏆 What are the prizes?",
-        "📍 Where is the venue?"
+        "🏆 What are the prizes?"
       ],
       answers: {
-        date: "The <strong>India Smart Hackathon (SIH 2026)</strong> internal grand finale & live pitch takes place on <strong>11 September 2026</strong> at D Y Patil School of Engineering and Management (DYPSEM Kolhapur). Registrations are open right now!<div class='chat-actions-group'><a href='https://forms.gle/QCQWTcSJoKSEKExD9' target='_blank' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z'/></svg> Register Now</a></div>",
-        roadmap: "<strong>DYPSEM SIH 2026 Nodal Center Roadmap:</strong><br>• <strong>2 Sept</strong>: Problem Statements Uploaded on Portal<br>• <strong>2–10 Sept</strong>: Idea Screening, Mentoring & PPT Preparation<br>• <strong>11 Sept 2026</strong>: <strong>Grand Internal Hackathon Finale & Live Pitch</strong><br>• <strong>Milestone 2</strong>: Nomination of Top Teams to National SIH Portal<br>• <strong>SIH Grand Finale</strong>: National SIH 2026 Finale Round.<br><br>👉 Check the Roadmap Graphic placed right above the Innovation Tracks section!",
-        poster: "<strong>Official DYPSEM SIH 2026 Event Poster:</strong><br>The grand internal hackathon poster is live with the theme: <em>Ideas + Innovation = Impact • Think, Build, Solve • 11 September 2026</em>.<div class='chat-actions-group'><a href='#poster' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z'/></svg> View Event Poster</a></div>",
-        register: "You can register your 6-member squad online via the official Google Form:<div class='chat-actions-group'><a href='https://forms.gle/QCQWTcSJoKSEKExD9' target='_blank' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z'/></svg> Open Official Registration Form</a></div>",
+        instagram: "<strong>Official DYPSEM SIH Instagram Page:</strong><br>Follow us for live event updates, photos, reels, and announcements on <strong>@hackthon/_dypsem</strong>:<div class='chat-actions-group'><a href='https://instagram.com/hackthon/_dypsem' target='_blank' class='chat-action-btn' style='background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color:#fff;'><svg viewBox='0 0 24 24'><path d='M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z'/></svg> Follow @_dypsem on Instagram</a></div>",
+        date: "⏰ <strong>Important Dates for SIH 2026:</strong><br>• <strong>Last Date to Register</strong>: <strong>8 September 2026</strong> (Registrations Close Strictly!)<br>• <strong>Internal Grand Finale & Live Pitch</strong>: <strong>11 September 2026</strong> at D Y Patil School of Engineering and Management (DYPSEM Kolhapur).<br><br>👉 Make sure your 6-member team registers before 8 September!<div class='chat-actions-group'><a href='https://forms.gle/QCQWTcSJoKSEKExD9' target='_blank' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z'/></svg> Register Now Before 8 Sept</a></div>",
+        roadmap: "<strong>DYPSEM SIH 2026 Nodal Center Roadmap:</strong><br>• <strong>2 Sept</strong>: Problem Statements Uploaded on Portal<br>• <strong>8 Sept 2026</strong>: ⏰ <strong>LAST DATE TO REGISTER TEAM</strong><br>• <strong>8–10 Sept</strong>: Idea Screening, Mentoring & PPT Preparation<br>• <strong>11 Sept 2026</strong>: <strong>Grand Internal Hackathon Finale & Live Pitch</strong><br>• <strong>Milestone 2</strong>: Nomination of Top Teams to National SIH Portal<br>• <strong>SIH Grand Finale</strong>: National SIH 2026 Finale Round.<br><br>👉 Check the Roadmap Graphic placed right above the Innovation Tracks section!",
+        poster: "<strong>Official DYPSEM SIH 2026 Event Poster:</strong><br>The grand internal hackathon poster is live with the theme: <em>Ideas + Innovation = Impact • Think, Build, Solve • Last Date: 8 Sept 2026 • Grand Finale: 11 Sept 2026</em>.<div class='chat-actions-group'><a href='#poster' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z'/></svg> View Event Poster</a></div>",
+        register: "You can register your 6-member squad online via the official Google Form. ⏰ <strong>Last Date to Register is 8 September 2026</strong>:<div class='chat-actions-group'><a href='https://forms.gle/QCQWTcSJoKSEKExD9' target='_blank' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z'/></svg> Open Official Registration Form</a></div>",
         team: "Each team must consist of strictly <strong>6 members</strong>. Following Smart India Hackathon guidelines, having at least one female team member is mandatory/strongly recommended to ensure diversity and national qualification.",
         tracks: "The hackathon features 6 innovation tracks: <br>1. <strong>AI & Smart Automation</strong><br>2. <strong>Smart Agriculture & IoT</strong><br>3. <strong>Clean Energy & Green Tech</strong><br>4. <strong>Healthcare & MedTech</strong><br>5. <strong>FinTech & Cyber Security</strong><br>6. <strong>Open Innovation</strong>.<div class='chat-actions-group'><a href='https://www.sih.gov.in/sih2026PS' target='_blank' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z'/></svg> Explore SIH Problem Statements</a></div>",
-        ppt: "You can download the official standardized presentation template here:<div class='chat-actions-group'><a href='assets/MEDIA/SIH2026-IDEA-Presentation-Format.pptx' download='SIH2026-IDEA-Presentation-Format.pptx' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z'/></svg> Download SIH Idea PPT (.pptx)</a></div><br>Use this standard format for your Stage 02 Idea Submission, covering problem definition, architecture, tech stack, and impact!",
-        checklist: "<strong>Team Leader Submission Checklist:</strong><br>1. Team name<br>2. College authorization letter<br>3. Team leader & member details<br>4. Gender details (1 female mandatory)<br>5. Email IDs & mobile numbers<br>6. Selected Problem Statement / Student Innovation category<br>7. Idea title & description<br>8. Idea presentation in PPT format<br><br>⏰ <strong>Important Deadline: 11 September 2026</strong>.",
+        ppt: "You can download the official standardized presentation template here:<div class='chat-actions-group'><a href='assets/media/SIH2026-IDEA-Presentation-Format.pptx' download='SIH2026-IDEA-Presentation-Format.pptx' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z'/></svg> Download SIH Idea PPT (.pptx)</a></div><br>Use this standard format for your Stage 02 Idea Submission, covering problem definition, architecture, tech stack, and impact!",
+        checklist: "<strong>Team Leader Submission Checklist:</strong><br>1. Team name<br>2. College authorization letter<br>3. Team leader & member details<br>4. Gender details (1 female mandatory)<br>5. Email IDs & mobile numbers<br>6. Selected Problem Statement / Student Innovation category<br>7. Idea title & description<br>8. Idea presentation in PPT format<br><br>⏰ <strong>Last Date to Register: 8 September 2026</strong><br>🏆 <strong>Grand Finale: 11 September 2026</strong>.",
         sources: "<strong>SIH 2026 brings problem statements from:</strong><br>• <strong>Government Ministries</strong> (Central Ministries & Departments)<br>• <strong>State Governments</strong> (State Administrations & Civic Bodies)<br>• <strong>Public Organizations</strong> (PSUs & Public Sector Undertakings)<br>• <strong>Private Organizations</strong> (Enterprises, MNCs & Tech Corporates)<br>• <strong>NGOs</strong> (Non-Governmental & Social Organizations)<br>• <strong>Other Collaborating Organizations</strong> (Research Labs & Institutions)<div class='chat-actions-group'><a href='https://www.sih.gov.in/sih2026PS' target='_blank' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z'/></svg> View Problem Statements</a></div>",
         evaluation: "<strong>How Ideas Are Evaluated — 9 Judging Criteria:</strong><br>💡 <strong>Novelty</strong> – Originality & Creativity<br>⚙️ <strong>Complexity</strong> – Technical Depth<br>🎯 <strong>Clarity</strong> – Communication Quality<br>✅ <strong>Feasibility</strong> – Technical Viability<br>🔧 <strong>Practicability</strong> – Real-World Deployment<br>🌱 <strong>Sustainability</strong> – Long-Term Viability<br>📈 <strong>Scale of Impact</strong> – Societal Reach<br>👤 <strong>User Experience</strong> – Design & Usability<br>🚀 <strong>Future Scope</strong> – Scalability & Growth<br><br>Score high across all 9 to maximize your National SIH nomination chances!",
-        individual: "<strong>Can I register individually?</strong><br>No, individual registrations are strictly not allowed. SIH is a team hackathon. You must form a 6-member squad (with at least 1 female participant) and register via your Team Leader.",
+        individual: "<strong>Can I register individually?</strong><br>No, individual registrations are strictly not allowed. SIH is a team hackathon. You must form a 6-member squad (with at least 1 female participant) and register via your Team Leader before 8 September 2026.",
         intercollege: "<strong>Can I join another college's team?</strong><br>No, cross-college or inter-college teams are not permitted for this internal edition. All 6 members must be enrolled students of DYPSEM Kolhapur with an official College Authorization Letter.",
         multiple_ps: "<strong>How many Problem Statements (PS) can we submit?</strong><br>Each team can submit for <strong>only 1 Problem Statement</strong> (or 1 Student Innovation idea). Focus your squad's efforts on delivering a high-quality Idea PPT and architecture.",
-        contact: "<strong>SIH Student Coordinators / Helpdesk:</strong><br>• <strong>Shriniket Sarshetti</strong>: <a href='tel:+919284331824' class='chat-phone-chip'><svg viewBox='0 0 24 24'><path d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/></svg> +91 92843 31824</a><br>• <strong>Aditya Avadan</strong>: <a href='tel:+919890345429' class='chat-phone-chip'><svg viewBox='0 0 24 24'><path d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/></svg> +91 98903 45429</a><br>• <strong>Athrav Shinde</strong>: <a href='tel:+917499652753' class='chat-phone-chip'><svg viewBox='0 0 24 24'><path d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/></svg> +91 74996 52753</a><br>• <strong>Harshad Teli</strong>: <a href='tel:+919970898012' class='chat-phone-chip'><svg viewBox='0 0 24 24'><path d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/></svg> +91 99708 98012</a><br><br>Feel free to call for registration, problem statements, or team guidance!",
+        contact: "<strong>SIH Student Coordinators / Helpdesk:</strong><br>• <strong>Shriniket Sarshetti (Host Coordinator)</strong>: <a href='tel:+919284331824' class='chat-phone-chip'><svg viewBox='0 0 24 24'><path d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/></svg> +91 92843 31824</a><br>• <strong>Aditya Avadan</strong>: <a href='tel:+919890345429' class='chat-phone-chip'><svg viewBox='0 0 24 24'><path d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/></svg> +91 98903 45429</a><br>• <strong>Athrav Shinde</strong>: <a href='tel:+917499652753' class='chat-phone-chip'><svg viewBox='0 0 24 24'><path d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/></svg> +91 74996 52753</a><br>• <strong>Harshad Teli</strong>: <a href='tel:+919970898012' class='chat-phone-chip'><svg viewBox='0 0 24 24'><path d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/></svg> +91 99708 98012</a><br><br>💬 <strong>Host Coordinator Instagram:</strong> For any queries, DM <a href='https://www.instagram.com/rebel330.t?igsi=OWlnZXNxd28wcnk1' target='_blank' class='chat-action-btn' style='background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); color:#fff;'>DM Host Coordinator (@rebel330.t)</a>",
         prizes: "Winners receive <strong>exciting cash prizes</strong>, certificates of excellence, hardware incubation toolkits, and direct nomination for the national Smart India Hackathon round!",
         venue: "The venue is <strong>D Y Patil School of Engineering and Management (DYPSEM)</strong>, D. Y. Patil Education Society campus, Kolhapur, Maharashtra.",
-        video: "The hero section showcases the official photograph of the <strong>DYPSEM Kolhapur campus</strong>. The official event showcase video is playing right above the challenges section (taken from <code>assets/MEDIA/footer.mp4</code>).",
-        default: "I can help with all details regarding the India Smart Hackathon on <strong>11 September 2026</strong> at DYPSEM Kolhapur. Ask about registration, roadmap, teams, tracks, evaluation criteria, poster, coordinators, or download the Idea PPT template!"
+        video: "The official video is playing in the background of the hero section, showcasing the <strong>DYPSEM Kolhapur campus</strong>. Another showcase video plays above the challenges section.",
+        default: "I can help with all details regarding the India Smart Hackathon (SIH 2026) at DYPSEM Kolhapur.<br>⏰ <strong>Last Date to Register: 8 September 2026</strong><br>🏆 <strong>Grand Finale: 11 September 2026</strong>!"
       }
     },
     mr: {
-      welcome: "नमस्कार! मी डी वाय पाटील स्कूल ऑफ इंजिनिअरिंग अँड मॅनेजमेंट (DYPSEM) मधील <strong>इंडिया स्मार्ट हॅकाथॉन (SIH)</strong> चा सहाय्यक आहे. कार्यक्रमाची मुख्य तारीख <strong>११ सप्टेंबर २०२६</strong> आहे. मी तुम्हाला कशी मदत करू शकेन?",
-      placeholder: "तारीख, नोंदणी, संघ, ट्रॅक्स, रोडमॅप बद्दल विचारा...",
+      welcome: "नमस्कार! मी डी वाय पाटील स्कूल ऑफ इंजिनिअरिंग अँड मॅनेजमेंट (DYPSEM) मधील <strong>इंडिया स्मार्ट हॅकाथॉन (SIH)</strong> चा सहाय्यक आहे. ⏰ <strong>नोंदणीची शेवटची तारीख ८ सप्टेंबर २०२६ आहे</strong>. कार्यक्रमाची मुख्य ग्रँड फिनाले तारीख <strong>११ सप्टेंबर २०२६</strong> आहे. मी तुम्हाला कशी मदत करू शकेन?",
+      placeholder: "तारीख, मुदत, नोंदणी, संघ, ट्रॅक्स, रोडमॅप बद्दल विचारा...",
       suggestionsHeader: "वारंवार विचारले जाणारे प्रश्न:",
       suggestions: [
-        "📅 कार्यक्रमाची तारीख काय आहे?",
+        "⏰ नोंदणीची शेवटची तारीख काय आहे?",
+        "📅 ग्रँड फिनाले कधी आहे?",
         "🗺️ नोडल सेंटर रोडमॅप (Roadmap)",
         "📝 नोंदणी कशी करायची?",
         "📞 समन्वयक संपर्क (Coordinators)",
@@ -405,36 +408,36 @@ document.addEventListener('DOMContentLoaded', () => {
         "🎯 कोणते ट्रॅक्स आहेत?",
         "🖼️ अधिकृत इव्हेंट पोस्टर",
         "💡 ९ मूल्यांकन निकष",
-        "🏆 बक्षिसे कोणती आहेत?",
-        "📍 कार्यक्रमाचे स्थळ कुठे आहे?"
+        "🏆 बक्षिसे कोणती आहेत?"
       ],
       answers: {
-        date: "<strong>इंडिया स्मार्ट हॅकाथॉन (SIH २०२६)</strong> ची ग्रँड फिनाले व थेट सादरीकरण <strong>११ सप्टेंबर २०२६</strong> रोजी डी वाय पाटील स्कूल ऑफ इंजिनिअरिंग अँड मॅनेजमेंट (कोल्हापूर) येथे होणार आहे. नोंदणी सध्या सुरू आहे!<div class='chat-actions-group'><a href='https://forms.gle/QCQWTcSJoKSEKExD9' target='_blank' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z'/></svg> नोंदणी करा</a></div>",
-        roadmap: "<strong>DYPSEM SIH २०२६ नोडल सेंटर रोडमॅप:</strong><br>• <strong>२ सप्टेंबर</strong>: पोर्टलवर समस्या विधाने (PS) उपलब्ध<br>• <strong>२-१० सप्टेंबर</strong>: आयडिया स्क्रीनिंग, मेंटॉरिंग आणि सादरीकरण तयारी<br>• <strong>११ सप्टेंबर २०२६</strong>: <strong>ग्रँड अंतर्गत हॅकाथॉन फिनाले आणि थेट सादरीकरण</strong><br>• <strong>टप्पा २</strong>: अव्वल संघांची निवड आणि राष्ट्रीय SIH पोर्टलवर नामांकन<br>• <strong>महाअंतिम फेरी</strong>: राष्ट्रीय SIH ग्रँड फिनाले.<br><br>👉 इनोव्हेशन ट्रॅक्सच्या वरील संपूर्ण रोडमॅप पहा!",
-        poster: "<strong>अधिकृत SIH २०२६ इव्हेंट पोस्टर:</strong><br><strong>डी वाय पाटील स्कूल ऑफ इंजिनिअरिंग अँड मॅनेजमेंट (DYPSEM कोल्हापूर)</strong> चे अधिकृत हॅकाथॉन पोस्टर उपलब्ध आहे! थीम: <em>Ideas + Innovation = Impact • Think, Build, Solve • ११ सप्टेंबर २०२६</em>.<div class='chat-actions-group'><a href='#poster' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z'/></svg> पोस्टर पहा</a></div>",
-        register: "तुम्ही अधिकृत गुगल फॉर्म लिंकद्वारे आपल्या ६ सदस्यीय संघाची नोंदणी करू शकता:<div class='chat-actions-group'><a href='https://forms.gle/QCQWTcSJoKSEKExD9' target='_blank' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z'/></svg> अधिकृत नोंदणी फॉर्म उघडा</a></div>",
-        team: "प्रत्येक संघात काटेकोरपणे <strong>६ सदस्य</strong> असणे आवश्यक आहे. राष्ट्रीय SIH नियमांनुसार संघात किमान एका महिला सदस्याचा समावेश असणे अनिवार्य / शिफारस केलेले आहे.",
-        tracks: "हॅकाथॉनमध्ये ६ मुख्य ट्रॅक्स आहेत: <br>१. <strong>AI आणि स्मार्ट ऑटोमेशन</strong><br>२. <strong>स्मार्ट शेती आणि IoT</strong><br>३. <strong>हरित ऊर्जा आणि ग्रीन टेक</strong><br>४. <strong>आरोग्य सेवा आणि मेडटेक</strong><br>५. <strong>फिनटेक आणि सायबर सुरक्षा</strong><br>६. <strong>मुक्त नवकल्पना (Open Innovation)</strong>.<div class='chat-actions-group'><a href='https://www.sih.gov.in/sih2026PS' target='_blank' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z'/></svg> समस्या विधाने पहा</a></div>",
-        ppt: "तुम्ही अधिकृत साचा (Template) येथून डाउनलोड करू शकता:<div class='chat-actions-group'><a href='assets/MEDIA/SIH2026-IDEA-Presentation-Format.pptx' download='SIH2026-IDEA-Presentation-Format.pptx' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z'/></svg> Idea PPT डाउनलोड करा (.pptx)</a></div><br>स्टेज ०२ साठी कल्पना सादरीकरण (Idea PPT) तयार करण्यासाठी याच अधिकृत फॉरमॅटचा वापर करा!",
-        checklist: "<strong>संघ प्रमुखांसाठी आवश्यक चेकलिस्ट:</strong><br>१. संघाचे नाव (Team Name)<br>२. कॉलेज अधिकृत पत्र (Authorization Letter)<br>३. संघ प्रमुख व सदस्यांचे तपशील<br>४. लिंग तपशील (१ महिला सदस्य अनिवार्य)<br>५. ईमेल आयडी व मोबाईल नंबर<br>६. निवडलेले समस्या विधान / नवकल्पना प्रवर्ग<br>७. कल्पनेचे शीर्षक व वर्णन<br>८. PPT स्वरूपात सादरीकरण<br><br>⏰ <strong>महत्त्वाची अंतिम मुदत: ११ सप्टेंबर २०२६</strong>!",
-        sources: "<strong>SIH 2026 खालील घटकांकडून समस्या विधाने आणते:</strong><br>• <strong>सरकारी मंत्रालये</strong> (Government Ministries)<br>• <strong>राज्य सरकारे</strong> (State Governments)<br>• <strong>सार्वजनिक संस्था</strong> (Public Organizations / PSUs)<br>• <strong>खाजगी संस्था</strong> (Private Organizations & Corporates)<br>• <strong>स्वयंसेवी संस्था (NGOs)</strong><br>• <strong>इतर सहयोगी संस्था</strong> (Collaborating Organizations)<div class='chat-actions-group'><a href='https://www.sih.gov.in/sih2026PS' target='_blank' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z'/></svg> अधिकृत समस्या विधाने येथे पहा</a></div>",
-        evaluation: "<strong>कल्पनांचे मूल्यांकन कसे केले जाते — ९ निकष:</strong><br>💡 <strong>नाविन्य (Novelty)</strong> – मौलिकता आणि सर्जनशीलता<br>⚙️ <strong>जटिलता (Complexity)</strong> – तांत्रिक खोली<br>🎯 <strong>स्पष्टता (Clarity)</strong> – संभाषण गुणवत्ता<br>✅ <strong>साध्यता (Feasibility)</strong> – तांत्रिक व्यवहार्यता<br>🔧 <strong>व्यावहारिकता (Practicability)</strong> – वास्तव जगातील तैनाती<br>🌱 <strong>टिकाऊपणा (Sustainability)</strong> – दीर्घकालीन व्यवहार्यता<br>📈 <strong>प्रभावाचे प्रमाण (Scale of Impact)</strong> – सामाजिक पोहोच<br>👤 <strong>वापरकर्ता अनुभव (User Experience)</strong> – डिझाइन आणि उपयुक्तता<br>🚀 <strong>भविष्यातील संधी (Future Scope)</strong> – वाढीची क्षमता",
-        individual: "<strong>वैयक्तिक नोंदणी करता येईल का?</strong><br>नाही, वैयक्तिक नोंदणीला परवानगी नाही. SIH ही पूर्णपणे सांघिक स्पर्धा आहे. ६ सदस्यांचा संघ बनवून संघ प्रमुखांमार्फतच नोंदणी करावी लागेल.",
-        intercollege: "<strong>दुसऱ्या कॉलेजच्या टीममध्ये सामील होता येईल का?</strong><br>नाही, आंतर-महाविद्यालयीन संघांना परवानगी नाही. सर्व ६ सदस्य डी वाय पाटील स्कूल ऑफ इंजिनिअरिंग अँड मॅनेजमेंट (कोल्हापूर) चेच नियमित विद्यार्थी असावेत.",
-        multiple_ps: "<strong>आम्ही किती समस्या विधाने (PS) सादर करू शकतो?</strong><br>प्रत्येक संघ फक्त <strong>१ समस्या विधान</strong> (किंवा ओपन इनोव्हेशन प्रकल्प) सादर करू शकतो.",
-        contact: "<strong>SIH विद्यार्थी समन्वयक (Student Coordinators):</strong><br>• <strong>श्रीनिकेत सरशेट्टी</strong>: <a href='tel:+919284331824' class='chat-phone-chip'><svg viewBox='0 0 24 24'><path d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/></svg> +91 92843 31824</a><br>• <strong>आदित्य अवदान</strong>: <a href='tel:+919890345429' class='chat-phone-chip'><svg viewBox='0 0 24 24'><path d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/></svg> +91 98903 45429</a><br>• <strong>अथर्व शिंदे</strong>: <a href='tel:+917499652753' class='chat-phone-chip'><svg viewBox='0 0 24 24'><path d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/></svg> +91 74996 52753</a><br>• <strong>हर्षद तेली</strong>: <a href='tel:+919970898012' class='chat-phone-chip'><svg viewBox='0 0 24 24'><path d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/></svg> +91 99708 98012</a><br><br>नोंदणी किंवा कोणत्याही मार्गदर्शनासाठी निसंकोच संपर्क साधा!",
-        prizes: "विजेत्या संघांना <strong>आकर्षक रोख बक्षिसे</strong>, प्रमाणपत्रे, हार्डवेअर किट्स आणि राष्ट्रीय स्तरावरील SIH फेरीत थेट कॉलेज नामांकन व मार्गदर्शन मिळेल!",
-        venue: "कार्यक्रमाचे स्थळ: <strong>डी वाय पाटील स्कूल ऑफ इंजिनिअरिंग अँड मॅनेजमेंट (DYPSEM)</strong>, डी. वाय. पाटील एज्युकेशन सोसायटी परिसर, कोल्हापूर, महाराष्ट्र.",
-        video: "हेडर विभागात <strong>डी वाय पाटील स्कूल ऑफ इंजिनिअरिंग अँड मॅनेजमेंट (DYPSEM कोल्हापूर) च्या कॅम्पसचे सुंदर छायाचित्र</strong> आहे. शोकेस व्हिडिओ इनोव्हेशन चॅलेंजेसच्या वर पाहू शकता (assets/MEDIA/footer.mp4)!",
-        default: "मी ११ सप्टेंबर रोजी होणाऱ्या डीवायपीटीईएम SIH हॅकाथॉनच्या सर्व माहितीसाठी येथे आहे. आपण तारीख, नोंदणी, रोडमॅप, संघ, ट्रॅक्स, पोस्टर, समन्वयक किंवा Idea PPT डाउनलोड विषयी विचारू शकता!"
+        date: "⏰ <strong>SIH २०२६ महत्त्वाच्या तारखा:</strong><br>• <strong>नोंदणीची शेवटची तारीख</strong>: <strong>८ सप्टेंबर २०२६</strong> (मुदतीनंतर नोंदणी बंद)<br>• <strong>ग्रँड अंतर्गत हॅकाथॉन फिनाले</strong>: <strong>११ सप्टेंबर २०२६</strong> रोजी डी वाय पाटील स्कूल ऑफ इंजिनिअरिंग अँड मॅनेजमेंट (कोल्हापूर) येथे.<br><br>👉 ८ सप्टेंबर पूर्वी आपल्या ६ सदस्यीय संघाची नोंदणी पूर्ण करा!<div class='chat-actions-group'><a href='https://forms.gle/QCQWTcSJoKSEKExD9' target='_blank' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z'/></svg> ८ सप्टें पूर्वी नोंदणी करा</a></div>",
+        roadmap: "<strong>DYPSEM SIH २०२६ नोडल सेंटर रोडमॅप:</strong><br>• <strong>२ सप्टेंबर</strong>: समस्या विधाने उपलब्ध<br>• <strong>८ सप्टेंबर २०२६</strong>: ⏰ <strong>संघ नोंदणीची शेवटची तारीख</strong><br>• <strong>८–१० सप्टेंबर</strong>: आयडिया स्क्रीनिंग व सादरीकरण तयारी<br>• <strong>११ सप्टेंबर २०२६</strong>: <strong>ग्रँड अंतर्गत हॅकाथॉन फिनाले आणि थेट सादरीकरण</strong><br>• <strong>राष्ट्रीय फेरी</strong>: राष्ट्रीय SIH ग्रँड फिनाले.",
+        poster: "<strong>अधिकृत SIH २०२६ इव्हेंट पोस्टर:</strong><br>पोस्टर उपलब्ध आहे! थीम: <em>Ideas + Innovation = Impact • नोंदणी मुदत: ८ सप्टें २०२६ • ग्रँड फिनाले: ११ सप्टें २०२६</em>.<div class='chat-actions-group'><a href='#poster' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z'/></svg> पोस्टर पहा</a></div>",
+        register: "तुम्ही अधिकृत गुगल फॉर्मद्वारे नोंदणी करू शकता. ⏰ <strong>नोंदणीची शेवटची तारीख ८ सप्टेंबर २०२६ आहे</strong>:<div class='chat-actions-group'><a href='https://forms.gle/QCQWTcSJoKSEKExD9' target='_blank' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z'/></svg> अधिकृत नोंदणी फॉर्म उघडा</a></div>",
+        team: "प्रत्येक संघात काटेकोरपणे <strong>६ सदस्य</strong> असणे आवश्यक आहे (किमान १ महिला सदस्य अनिवार्य).",
+        tracks: "हॅकाथॉनमध्ये ६ मुख्य ट्रॅक्स आहेत: AI, स्मार्ट शेती, ग्रीन टेक, मेडटेक, फिनटेक आणि ओपन इनोव्हेशन.",
+        ppt: "तुम्ही अधिकृत साचा (Template) येथून डाउनलोड करू शकता:<div class='chat-actions-group'><a href='assets/media/SIH2026-IDEA-Presentation-Format.pptx' download='SIH2026-IDEA-Presentation-Format.pptx' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z'/></svg> Idea PPT डाउनलोड करा (.pptx)</a></div>",
+        checklist: "<strong>संघ प्रमुखांसाठी आवश्यक चेकलिस्ट:</strong><br>१. संघाचे नाव<br>२. कॉलेज अधिकृत पत्र<br>३. ६ सदस्यांचे तपशील (१ महिला सदस्य)<br>४. निवडलेले समस्या विधान<br>५. PPT स्वरूपात सादरीकरण<br><br>⏰ <strong>नोंदणी मुदत: ८ सप्टेंबर २०२६</strong><br>🏆 <strong>ग्रँड फिनाले: ११ सप्टेंबर २०२६</strong>!",
+        sources: "SIH 2026 केंद्र/राज्य सरकारे, PSUs व खाजगी कंपन्यांचे प्रॉब्लेम स्टेटमेंट आणते.",
+        evaluation: "९ मुख्य निकषांवर आधारित मूल्यांकन केले जाईल.",
+        individual: "नाही, वैयक्तिक नोंदणीला परवानगी नाही. ६ सदस्यांचा संघ अनिवार्य आहे.",
+        intercollege: "नाही, सर्व ६ सदस्य DYPSEM कोल्हापूरचेच विद्यार्थी असावेत.",
+        multiple_ps: "प्रत्येक संघ फक्त १ समस्या विधान सादर करू शकतो.",
+        contact: "विद्यार्थी समन्वयक: श्रीनिकेत (+91 92843 31824), आदित्य (+91 98903 45429), अथर्व (+91 74996 52753), हर्षद (+91 99708 98012).",
+        prizes: "रोख बक्षिसे, प्रमाणपत्रे आणि राष्ट्रीय SIH फेरीत कॉलेज नामांकन मिळेल!",
+        venue: "डी वाय पाटील स्कूल ऑफ इंजिनिअरिंग अँड मॅनेजमेंट (DYPSEM), कोल्हापूर.",
+        video: "डीवायपीटीईएम कॅम्पसचा पार्श्वभूमी व्हिडिओ सुरू आहे.",
+        default: "⏰ <strong>नोंदणीची शेवटची तारीख: ८ सप्टेंबर २०२६</strong><br>🏆 <strong>ग्रँड फिनाले: ११ सप्टेंबर २०२६</strong>!"
       }
     },
     hi: {
-      welcome: "नमस्ते! मैं डी वाई पाटिल स्कूल ऑफ इंजीनियरिंग एंड मैनेजमेंट (DYPSEM) में <strong>इंडिया स्मार्ट हैकाथॉन (SIH)</strong> का सहायक हूँ। इस कार्यक्रम का ग्रैंड फिनाले <strong>11 सितंबर 2026</strong> को है। मैं आपकी क्या सहायता कर सकता हूँ?",
-      placeholder: "तारीख, रजिस्ट्रेशन, टीम, थीम्स, रोडमॅप के बारे में पूछें...",
+      welcome: "नमस्ते! मैं डी वाई पाटिल स्कूल ऑफ इंजीनियरिंग एंड मैनेजमेंट (DYPSEM) में <strong>इंडिया स्मार्ट हैकाथॉन (SIH)</strong> का सहायक हूँ। ⏰ <strong>रजिस्ट्रेशन की अंतिम तिथि 8 सितंबर 2026 है</strong>। ग्रैंड फिनाले <strong>11 सितंबर 2026</strong> को है। मैं आपकी क्या सहायता कर सकता हूँ?",
+      placeholder: "तारीख, अंतिम तिथि, रजिस्ट्रेशन, टीम, थीम्स के बारे में पूछें...",
       suggestionsHeader: "सुझाए गए प्रश्न:",
       suggestions: [
-        "📅 कार्यक्रम की तारीख क्या है?",
+        "⏰ रजिस्ट्रेशन की अंतिम तिथि क्या है?",
+        "📅 ग्रैंड फिनाले कब है?",
         "🗺️ नोडल सेंटर रोडमॅप (Roadmap)",
         "📝 रजिस्ट्रेशन कैसे करें?",
         "📞 समन्वयक संपर्क (Coordinators)",
@@ -444,28 +447,27 @@ document.addEventListener('DOMContentLoaded', () => {
         "🎯 थीम्स और ट्रैक्स कौन से हैं?",
         "🖼️ आधिकारिक इवेंट पोस्टर",
         "💡 9 मूल्यांकन मानदंड",
-        "🏆 पुरस्कार क्या हैं?",
-        "📍 कार्यक्रम का स्थान कहाँ है?"
+        "🏆 पुरस्कार क्या हैं?"
       ],
       answers: {
-        date: "<strong>इंडिया स्मार्ट हैकाथॉन (SIH 2026)</strong> का ग्रैंड फिनाले एवं लाइव पिचिंग <strong>11 सितंबर 2026</strong> को डी वाई पाटिल स्कूल ऑफ इंजीनियरिंग एंड मैनेजमेंट (कोल्हापुर) में आयोजित किया जाएगा। रजिस्ट्रेशन प्रारंभ हैं!<div class='chat-actions-group'><a href='https://forms.gle/QCQWTcSJoKSEKExD9' target='_blank' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z'/></svg> रजिस्ट्रेशन करें</a></div>",
-        roadmap: "<strong>DYPSEM SIH 2026 नोडल सेंटर रोडमॅप:</strong><br>• <strong>2 सितंबर</strong>: पोर्टल पर प्रॉब्लम स्टेटमेंट्स जारी<br>• <strong>2–10 सितंबर</strong>: आइडिया स्क्रीनिंग, मेंटरिंग एवं PPT तैयारी<br>• <strong>11 सितंबर 2026</strong>: <strong>ग्रैंड इंटरनल हैकाथॉन फिनाले एवं लाइव पिचिंग</strong><br>• <strong>माइलस्टोन 2</strong>: टॉप टीमों का चयन और राष्ट्रीय SIH पोर्टल पर नामांकन<br>• <strong>ग्रैंड फिनाले</strong>: राष्ट्रीय SIH 2026 ग्रैंड फिनाले राउंड।<br><br>👉 इनोवेशन ट्रैक्स के ठीक ऊपर दिया गया संपूर्ण रोडमॅप देखें!",
-        poster: "<strong>आधिकारिक SIH 2026 इवेंट पोस्टर:</strong><br><strong>डी वाई पाटिल स्कूल ऑफ इंजीनियरिंग एंड मैनेजमेंट (DYPSEM कोल्हापुर)</strong> का आधिकारिक हैकाथॉन पोस्टर जारी हो चुका है! थीम: <em>Ideas + Innovation = Impact • Think, Build, Solve • 11 सितंबर 2026</em>.<div class='chat-actions-group'><a href='#poster' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z'/></svg> पोस्टर देखें</a></div>",
-        register: "आप आधिकारिक गूगल फॉर्म के माध्यम से अपनी 6-सदस्यीय टीम का रजिस्ट्रेशन कर सकते हैं:<div class='chat-actions-group'><a href='https://forms.gle/QCQWTcSJoKSEKExD9' target='_blank' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z'/></svg> आधिकारिक रजिस्ट्रेशन फॉर्म खोलें</a></div>",
-        team: "प्रत्येक टीम में अनिवार्य रूप से <strong>6 सदस्य</strong> होने चाहिए। राष्ट्रीय SIH दिशानिर्देशों के तहत विविधता और चयन के लिए कम से कम एक महिला सदस्य होना अनिवार्य / दृढ़ता से अनुशंसित है।",
-        tracks: "हैकाथॉन में 6 मुख्य इनोवेशन ट्रैक्स शामिल हैं: <br>1. <strong>AI और स्मार्ट ऑटोमेशन</strong><br>2. <strong>स्मार्ट कृषि और IoT</strong><br>3. <strong>स्वच्छ ऊर्जा और ग्रीन टेक</strong><br>4. <strong>हेल्थकेयर और मेडटेक</strong><br>5. <strong>फिनटेक और साइबर सुरक्षा</strong><br>6. <strong>ओपन इनोवेशन</strong>.<div class='chat-actions-group'><a href='https://www.sih.gov.in/sih2026PS' target='_blank' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z'/></svg> प्रॉब्लम स्टेटमेंट्स देखें</a></div>",
-        ppt: "आप आधिकारिक आइडिया प्रस्तुति टेम्पलेट यहाँ से डाउनलोड कर सकते हैं:<div class='chat-actions-group'><a href='assets/MEDIA/SIH2026-IDEA-Presentation-Format.pptx' download='SIH2026-IDEA-Presentation-Format.pptx' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z'/></svg> Idea PPT डाउनलोड करें (.pptx)</a></div><br>स्टेज 02 के लिए अपनी प्रेजेंटेशन स्लाइड्स तैयार करने हेतु इसी प्रारूप का उपयोग करें!",
-        checklist: "<strong>टीम लीडर के लिए अनिवार्य चेकलिस्ट:</strong><br>1. टीम का नाम (Team name)<br>2. कॉलेज ऑथराइजेशन लेटर (Authorization letter)<br>3. टीम लीडर और सभी सदस्यों का विवरण<br>4. जेंडर विवरण (1 महिला सदस्य अनिवार्य)<br>5. ईमेल आईडी एवं मोबाइल नंबर<br>6. चयनित प्रॉब्लम स्टेटमेंट / इनोवेशन कैटेगरी<br>7. आइडिया टाइटल एवं विवरण<br>8. PPT फॉर्मेट में आइडिया प्रेजेंटेशन<br><br>⏰ <strong>महत्वपूर्ण डेडलाइन: 11 सितंबर 2026</strong>!",
-        sources: "<strong>SIH 2026 निम्नलिखित से प्रॉब्लम स्टेटमेंट्स लाता है:</strong><br>• <strong>सरकारी मंत्रालय</strong> (Government Ministries)<br>• <strong>राज्य सरकारें</strong> (State Governments)<br>• <strong>सार्वजनिक संगठन</strong> (Public Organizations / PSUs)<br>• <strong>निजी संगठन</strong> (Private Organizations & Corporates)<br>• <strong>गैर-सरकारी संगठन (NGOs)</strong><br>• <strong>अन्य सहयोगी संगठन</strong> (Collaborating Organizations)<div class='chat-actions-group'><a href='https://www.sih.gov.in/sih2026PS' target='_blank' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z'/></svg> सभी प्रॉब्लम स्टेटमेंट्स देखें</a></div>",
-        evaluation: "<strong>आइडिया का मूल्यांकन कैसे होता है — 9 मानदंड:</strong><br>💡 <strong>नवीनता (Novelty)</strong> – मौलिकता और रचनात्मकता<br>⚙️ <strong>जटिलता (Complexity)</strong> – तकनीकी गहराई<br>🎯 <strong>स्पष्टता (Clarity)</strong> – संचार गुणवत्ता<br>✅ <strong>संभावनीयता (Feasibility)</strong> – तकनीकी व्यावहारिकता<br>🔧 <strong>व्यावहारिकता (Practicability)</strong> – वास्तविक दुनिया में तैनाती<br>🌱 <strong>स्थिरता (Sustainability)</strong> – दीर्घकालिक व्यवहार्यता<br>📈 <strong>प्रभाव का पैमाना (Scale of Impact)</strong> – सामाजिक पहुंच<br>👤 <strong>उपयोगकर्ता अनुभव (UX)</strong> – डिज़ाइन और उपयोगिता<br>🚀 <strong>भविष्य का दायरा (Future Scope)</strong> – स्केलेबिलिटी और विकास",
-        individual: "<strong>क्या मैं व्यक्तिगत रूप से रजिस्ट्रेशन कर सकता हूँ?</strong><br>नहीं, व्यक्तिगत रजिस्ट्रेशन की अनुमति नहीं है। SIH एक टीम हैकाथॉन है। आपको 6 सदस्यों की टीम बनाकर टीम लीडर के माध्यम से रजिस्ट्रेशन करना होगा।",
-        intercollege: "<strong>क्या मैं दूसरे कॉलेज की टीम में शामिल हो सकता हूँ?</strong><br>नहीं, क्रॉस-कॉलेज टीमों की अनुमति नहीं है। सभी 6 सदस्य डी वाई पाटिल स्कूल ऑफ इंजीनियरिंग एंड मैनेजमेंट (कोल्हापुर) के ही नियमित छात्र होने चाहिए।",
-        multiple_ps: "<strong>हम कितने प्रॉब्लम स्टेटमेंट्स (PS) सबमिट कर सकते हैं?</strong><br>प्रत्येक टीम केवल <strong>1 प्रॉब्लम स्टेटमेंट</strong> (या ओपन इनोवेशन आइडिया) सबमिट कर सकती है।",
-        contact: "<strong>SIH छात्र समन्वयक (Student Coordinators):</strong><br>• <strong>श्रीनीकेत सरशेट्टी</strong>: <a href='tel:+919284331824' class='chat-phone-chip'><svg viewBox='0 0 24 24'><path d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/></svg> +91 92843 31824</a><br>• <strong>आदित्य अवदान</strong>: <a href='tel:+919890345429' class='chat-phone-chip'><svg viewBox='0 0 24 24'><path d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/></svg> +91 98903 45429</a><br>• <strong>अथर्व शिंदे</strong>: <a href='tel:+917499652753' class='chat-phone-chip'><svg viewBox='0 0 24 24'><path d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/></svg> +91 74996 52753</a><br>• <strong>हर्षद तेली</strong>: <a href='tel:+919970898012' class='chat-phone-chip'><svg viewBox='0 0 24 24'><path d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/></svg> +91 99708 98012</a><br><br>रजिस्ट्रेशन या किसी भी सहायता के लिए संपर्क करें!",
-        prizes: "विजेता टीमों को <strong>आकर्षक नकद पुरस्कार</strong>, उत्कृष्टता प्रमाण पत्र, हार्डवेयर किट्स, और राष्ट्रीय स्मार्ट इंडिया हैकाथॉन के लिए डायरेक्ट कॉलेज नामांकन मिलेगा!",
-        venue: "स्थान: <strong>डी वाई पाटिल स्कूल ऑफ इंजीनियरिंग एंड मैनेजमेंट (DYPSEM)</strong>, डी. वाई. पाटिल एजुकेशन सोसाइटी कैंपस, कोल्हापुर, महाराष्ट्र।",
-        video: "हेडर सेक्शन में <strong>डी वाई पाटिल स्कूल ऑफ इंजीनियरिंग एंड मैनेजमेंट (DYPSEM कोल्हापुर) के खूबसूरत कैंपस का फोटो</strong> प्रदर्शित है। आधिकारिक शोकेस वीडियो चुनौतियों के ठीक ऊपर देखा जा सकता है (assets/MEDIA/footer.mp4)।",
-        default: "मैं 11 सितंबर को DYPSEM कोल्हापुर में आयोजित इंडिया स्मार्ट हैकाथॉन की पूरी जानकारी के लिए उपस्थित हूँ। आप तारीख, रजिस्ट्रेशन, रोडमॅप, टीम, थीम्स, पोस्टर, समन्वयक या Idea PPT डाउनलोड के बारे में पूछ सकते हैं!"
+        date: "⏰ <strong>SIH 2026 की महत्वपूर्ण तिथियाँ:</strong><br>• <strong>रजिस्ट्रेशन की अंतिम तिथि</strong>: <strong>8 सितंबर 2026</strong> (समय सीमा के बाद फॉर्म बंद)<br>• <strong>ग्रैंड इंटरनल हैकाथॉन फिनाले एवं लाइव पिचिंग</strong>: <strong>11 सितंबर 2026</strong> को DYPSEM कोल्हापुर में।<br><br>👉 8 सितंबर से पहले अपनी 6-सदस्यीय टीम का रजिस्ट्रेशन अवश्य पूरा करें!<div class='chat-actions-group'><a href='https://forms.gle/QCQWTcSJoKSEKExD9' target='_blank' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z'/></svg> 8 सितंबर से पहले रजिस्ट्रेशन करें</a></div>",
+        roadmap: "<strong>DYPSEM SIH 2026 नोडल सेंटर रोडमॅप:</strong><br>• <strong>2 सितंबर</strong>: प्रॉब्लम स्टेटमेंट्स जारी<br>• <strong>8 सितंबर 2026</strong>: ⏰ <strong>टीम रजिस्ट्रेशन की अंतिम तिथि</strong><br>• <strong>8–10 सितंबर</strong>: आइडिया स्क्रीनिंग एवं PPT तैयारी<br>• <strong>11 सितंबर 2026</strong>: <strong>ग्रैंड इंटरनल हैकाथॉन फिनाले एवं लाइव पिचिंग</strong><br>• <strong>राष्ट्रीय राउंड</strong>: राष्ट्रीय SIH 2026 फिनाले।",
+        poster: "आधिकारिक हैकाथॉन पोस्टर जारी हो चुका है! थीम: <em>Ideas + Innovation = Impact • रजिस्ट्रेशन अंतिम तिथि: 8 सितंबर 2026 • ग्रैंड फिनाले: 11 सितंबर 2026</em>.",
+        register: "आप आधिकारिक गूगल फॉर्म के माध्यम से 6-सदस्यीय टीम का रजिस्ट्रेशन कर सकते हैं। ⏰ <strong>रजिस्ट्रेशन की अंतिम तिथि 8 सितंबर 2026 है</strong>:<div class='chat-actions-group'><a href='https://forms.gle/QCQWTcSJoKSEKExD9' target='_blank' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z'/></svg> आधिकारिक फॉर्म खोलें</a></div>",
+        team: "प्रत्येक टीम में अनिवार्य रूप से <strong>6 सदस्य</strong> होने चाहिए (कम से कम 1 महिला सदस्य अनिवार्य)।",
+        tracks: "हैकाथॉन में 6 मुख्य इनोवेशन ट्रैक्स शामिल हैं: AI, कृषि, क्लीन टेक, हेल्थकेयर, फिनटेक और ओपन इनोवेशन।",
+        ppt: "आइडिया PPT फॉर्मेट डाउनलोड करें:<div class='chat-actions-group'><a href='assets/media/SIH2026-IDEA-Presentation-Format.pptx' download='SIH2026-IDEA-Presentation-Format.pptx' class='chat-action-btn'><svg viewBox='0 0 24 24'><path d='M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z'/></svg> Idea PPT डाउनलोड करें (.pptx)</a></div>",
+        checklist: "⏰ <strong>रजिस्ट्रेशन की अंतिम तिथि: 8 सितंबर 2026</strong><br>🏆 <strong>ग्रैंड फिनाले: 11 सितंबर 2026</strong>!",
+        sources: "प्रॉब्लम स्टेटमेंट्स सरकारी मंत्रालयों, राज्य सरकारों और कंपनियों द्वारा प्रदान किए जाते हैं।",
+        evaluation: "9 जजिंग क्राइटेरिया के आधार पर मूल्यांकन किया जाएगा।",
+        individual: "नहीं, व्यक्तिगत रजिस्ट्रेशन की अनुमति नहीं है। 6-सदस्यीय टीम अनिवार्य है।",
+        intercollege: "नहीं, सभी 6 सदस्य DYPSEM कोल्हापुर के ही होने चाहिए।",
+        multiple_ps: "प्रत्येक टीम केवल 1 प्रॉब्लम स्टेटमेंट सबमिट कर सकती है।",
+        contact: "छात्र समन्वयक: श्रीनीकेत (+91 92843 31824), आदित्य (+91 98903 45429), अथर्व (+91 74996 52753), हर्षद (+91 99708 98012)।",
+        prizes: "नकद पुरस्कार, प्रमाण पत्र और राष्ट्रीय राउंड के लिए डायरेक्ट नामांकन।",
+        venue: "डी वाई पाटिल स्कूल ऑफ इंजीनियरिंग एंड मैनेजमेंट (DYPSEM कोल्हापुर)।",
+        video: "DYPSEM कैंपस बैकग्राउंड वीडियो चल रहा है।",
+        default: "⏰ <strong>रजिस्ट्रेशन की अंतिम तिथि: 8 सितंबर 2026</strong><br>🏆 <strong>ग्रैंड फिनाले: 11 सितंबर 2026</strong>!"
       }
     }
   };
@@ -754,3 +756,100 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+
+/* ==========================================================================
+   Hero Typewriter Effect — Hackathon Name + Rotating Slogans
+   ========================================================================== */
+(function heroTypewriter() {
+  const wordEl   = document.getElementById('heroTypeWord');
+  const sloganEl = document.getElementById('heroTypeSlogan');
+  if (!wordEl || !sloganEl) return;
+
+  // ── Words typed in the title line (after "Smart India") ─────────────────
+  const titleWords = [
+    'Hackathon SIH',
+    'Innovation 2026',
+    'Grand Finale',
+    'Hackathon SIH'   // loops back
+  ];
+
+  // ── Slogans typed below the title ────────────────────────────────────────
+  const slogans = [
+    'LAST DATE TO REGISTER: 8 SEPTEMBER 2026',
+    'REGISTER BEFORE 8 SEPT 2026!',
+    'YOUR IDEA CAN CHANGE TOMORROW',
+    'IDEAS + INNOVATION = IMPACT',
+    'THINK • BUILD • SOLVE',
+    'D Y Patil School of Engineering',
+    'Grand Finale: 11 September 2026'
+  ];
+
+  const SPEED_TYPE   = 60;   // ms per char while typing
+  const SPEED_DEL    = 30;   // ms per char while deleting
+  const PAUSE_AFTER  = 1800; // ms pause after word fully typed
+  const PAUSE_BEFORE = 350;  // ms pause before deleting
+
+  let wIdx = 0, sIdx = 0;
+
+  // ── Title typewriter ────────────────────────────────────────────────────
+  function typeWord(word, i, cb) {
+    if (i <= word.length) {
+      wordEl.textContent = word.slice(0, i);
+      setTimeout(() => typeWord(word, i + 1, cb), SPEED_TYPE);
+    } else {
+      setTimeout(cb, PAUSE_AFTER);
+    }
+  }
+
+  function deleteWord(word, i, cb) {
+    if (i >= 0) {
+      wordEl.textContent = word.slice(0, i);
+      setTimeout(() => deleteWord(word, i - 1, cb), SPEED_DEL);
+    } else {
+      setTimeout(cb, PAUSE_BEFORE);
+    }
+  }
+
+  function cycleTitle() {
+    const word = titleWords[wIdx % titleWords.length];
+    typeWord(word, 0, () => {
+      deleteWord(word, word.length, () => {
+        wIdx++;
+        cycleTitle();
+      });
+    });
+  }
+
+  // ── Slogan typewriter (starts 800ms after title begins) ─────────────────
+  function typeSlogan(slogan, i, cb) {
+    if (i <= slogan.length) {
+      sloganEl.textContent = slogan.slice(0, i);
+      setTimeout(() => typeSlogan(slogan, i + 1, cb), SPEED_TYPE);
+    } else {
+      setTimeout(cb, PAUSE_AFTER + 200);
+    }
+  }
+
+  function deleteSlogan(slogan, i, cb) {
+    if (i >= 0) {
+      sloganEl.textContent = slogan.slice(0, i);
+      setTimeout(() => deleteSlogan(slogan, i - 1, cb), SPEED_DEL);
+    } else {
+      setTimeout(cb, PAUSE_BEFORE);
+    }
+  }
+
+  function cycleSlogan() {
+    const slogan = slogans[sIdx % slogans.length];
+    typeSlogan(slogan, 0, () => {
+      deleteSlogan(slogan, slogan.length, () => {
+        sIdx++;
+        cycleSlogan();
+      });
+    });
+  }
+
+  // Start both sequences
+  cycleTitle();
+  setTimeout(cycleSlogan, 800);
+})();
