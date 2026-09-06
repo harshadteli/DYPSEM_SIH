@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BulkMail — Professional Email Sender</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════════════════ LOGIN SCREEN -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <!-- Brand -->
+      <div class="login-brand">
+        <div class="login-brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4Z" fill="#1a73e8"/>
+            <path d="M20 6L12 13L4 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h1 class="login-brand-name">BulkMail</h1>
+        <p class="login-brand-sub">Professional Email Sender &middot; HarshTech Technology</p>
+      </div>
+
+      <!-- Welcome text -->
+      <div class="login-welcome">
+        <h2>Welcome back</h2>
+        <p>Sign in to your account to continue</p>
+      </div>
+
+      <!-- Form -->
+      <form class="login-form" id="loginForm" autocomplete="off">
+        <div class="login-form-group">
+          <label class="login-label" for="loginEmail">Email Address</label>
+          <div class="login-input-wrap">
+            <svg class="login-input-icon" viewBox="0 0 24 24" fill="none">
+              <path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M20 6L12 13L4 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <input type="email" id="loginEmail" class="login-input" placeholder="Enter your email" autocomplete="username" required />
+          </div>
+        </div>
+
+        <div class="login-form-group">
+          <label class="login-label" for="loginPassword">Password</label>
+          <div class="login-input-wrap">
+            <svg class="login-input-icon" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <input type="password" id="loginPassword" class="login-input" placeholder="Enter your password" autocomplete="current-password" required />
+            <button type="button" class="login-eye-btn" id="togglePassword" title="Show/hide password">
+              <svg id="eyeIcon" viewBox="0 0 24 24" fill="none">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/>
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="login-error" id="loginError" hidden>
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span id="loginErrorMsg">Invalid email or password.</span>
+        </div>
+
+        <button type="submit" class="login-submit-btn" id="loginSubmitBtn">
+          <span id="loginBtnText">Sign In</span>
+          <span id="loginBtnLoader" class="login-loader" hidden></span>
+        </button>
+      </form>
+
+      <p class="login-footer-note">&copy; 2024 HarshTech Technology. All rights reserved.</p>
+    </div>
+  </div>
+  <!-- ═══════════════════════════════════════════════════ END LOGIN SCREEN -->
+  <!-- ═══════════════════════════════════════════════════════════ HEADER -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4Z" fill="#1a73e8"/>
+          <path d="M20 6L12 13L4 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="brand-name">BulkMail</span>
+        <span class="brand-tagline">Professional Email Sender</span>
+      </div>
+      <div class="header-actions">
+        <button class="btn-icon" id="historyBtn" title="Email History">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 8V12L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg>
+          <span>History</span>
+        </button>
+        <button class="btn-icon" id="settingsBtn" title="Settings">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="currentColor" stroke-width="2"/></svg>
+          <span>Settings</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════════════════════ STEP PROGRESS -->
+  <div class="stepper-wrapper">
+    <div class="stepper">
+      <div class="step active" data-step="1">
+        <div class="step-circle">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="step-label">
+          <span class="step-num">Step 1</span>
+          <span class="step-title">Recipients</span>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step" data-step="2">
+        <div class="step-circle">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="step-label">
+          <span class="step-num">Step 2</span>
+          <span class="step-title">Compose</span>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step" data-step="3">
+        <div class="step-circle">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke="currentColor" stroke-width="2"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="step-label">
+          <span class="step-num">Step 3</span>
+          <span class="step-title">Preview</span>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step" data-step="4">
+        <div class="step-circle">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="step-label">
+          <span class="step-num">Step 4</span>
+          <span class="step-title">Send</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════ MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- ─────────────────────────────────────── STEP 1: RECIPIENTS -->
+    <section class="step-panel active" id="panel-1">
+      <div class="panel-header">
+        <h2>Add Recipients</h2>
+        <p class="panel-sub">Add the email addresses you want to send your campaign to.</p>
+      </div>
+
+      <div class="recipients-grid">
+        <!-- Left: Input methods -->
+        <div class="recipients-input-area">
+          <!-- Tabs -->
+          <div class="input-tabs">
+            <button class="tab-btn active" data-tab="single">Single Email</button>
+            <button class="tab-btn" data-tab="bulk">Bulk Paste</button>
+            <button class="tab-btn" data-tab="csv">CSV Import</button>
+          </div>
+
+          <!-- Tab: Single -->
+          <div class="tab-panel active" id="tab-single">
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <div class="input-with-btn">
+                <input type="email" id="singleEmailInput" class="form-input" placeholder="name@example.com" autocomplete="off" />
+                <button class="btn-primary" id="addSingleEmailBtn">Add</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Display Name <span class="optional">(optional)</span></label>
+              <input type="text" id="singleNameInput" class="form-input" placeholder="Recipient Name" />
+            </div>
+          </div>
+
+          <!-- Tab: Bulk Paste -->
+          <div class="tab-panel" id="tab-bulk">
+            <div class="form-group">
+              <label class="form-label">Paste Multiple Emails</label>
+              <p class="form-hint">Separate with commas, semicolons, or new lines.</p>
+              <textarea id="bulkEmailInput" class="form-textarea" rows="6" placeholder="alice@example.com, bob@example.com&#10;carol@example.com; dave@example.com"></textarea>
+              <div class="form-actions-row">
+                <span class="parse-count" id="bulkParseCount">0 emails detected</span>
+                <button class="btn-primary" id="addBulkEmailsBtn">Add All</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab: CSV Import -->
+          <div class="tab-panel" id="tab-csv">
+            <div class="form-group">
+              <label class="form-label">Upload CSV File</label>
+              <p class="form-hint">CSV must have an <code>email</code> column. Optional: <code>name</code> column.</p>
+              <div class="file-drop-zone" id="csvDropZone">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <p>Drag & drop your CSV here</p>
+                <p class="hint-small">or</p>
+                <label class="btn-outline file-label">
+                  Browse File
+                  <input type="file" id="csvFileInput" accept=".csv,text/csv" hidden />
+                </label>
+              </div>
+              <div class="csv-preview" id="csvPreview" hidden></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Recipient list -->
+        <div class="recipients-list-area">
+          <div class="list-header">
+            <span class="list-title">Recipient List</span>
+            <span class="list-count badge" id="recipientCount">0</span>
+            <button class="btn-text btn-danger-text" id="clearAllBtn" style="display:none">Clear All</button>
+          </div>
+
+          <div class="chips-container" id="chipsContainer">
+            <div class="empty-state" id="recipientsEmptyState">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.5"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.5"/></svg>
+              <p>No recipients added yet</p>
+              <p class="hint-small">Add emails using the panel on the left</p>
+            </div>
+          </div>
+
+          <div class="list-stats" id="listStats" hidden>
+            <div class="stat-item">
+              <span class="stat-val" id="statValid">0</span>
+              <span class="stat-lbl">Valid</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-val stat-warn" id="statDuplicate">0</span>
+              <span class="stat-lbl">Duplicate</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-val stat-err" id="statInvalid">0</span>
+              <span class="stat-lbl">Invalid</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-footer">
+        <div></div>
+        <button class="btn-primary btn-lg" id="step1ContinueBtn" disabled>
+          Continue
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────── STEP 2: COMPOSER -->
+    <section class="step-panel" id="panel-2">
+      <div class="panel-header">
+        <h2>Compose Email</h2>
+        <p class="panel-sub">Fill in the details below. The Subject field becomes the email title shown in the recipient's inbox.</p>
+      </div>
+
+      <div class="composer-grid">
+        <!-- Left: Form -->
+        <div class="composer-form-area">
+
+          <div class="form-section-header-row">
+            <div class="form-section-title">Sender & Content Details</div>
+            <button type="button" class="btn-text btn-sample" id="loadSampleTemplateBtn">
+              ✨ Load Sample Template
+            </button>
+          </div>
+
+          <div id="spamRiskAlert" class="spam-alert-container" hidden></div>
+
+          <div class="form-group">
+            <label class="form-label">Sender Name <span class="required">*</span></label>
+            <input type="text" id="senderName" class="form-input" placeholder="e.g. Harshad from SIH Team" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              Subject (Email Title in Inbox) <span class="required">*</span>
+              <span class="label-hint">— Help recipients understand the message at a glance</span>
+            </label>
+            <input type="text" id="emailSubject" class="form-input" placeholder="e.g. Smart India Hackathon 2024 — Important Project Guidelines" />
+            <div class="char-count"><span id="subjectCharCount">0</span>/150</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Banner Image <span class="optional">(optional)</span></label>
+            <p class="form-hint">Upload a banner image file. The banner appears at the <strong>top</strong> of the email.</p>
+            <div class="banner-input-controls">
+              <div class="banner-upload-row banner-upload-primary">
+                <button type="button" class="btn-outline btn-upload" id="bannerUploadBtn">
+                  <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Upload Banner Image
+                </button>
+                <input type="file" id="bannerFileInput" accept="image/*" hidden />
+              </div>
+            </div>
+            <div class="banner-preview-inline" id="bannerPreviewInline" hidden>
+              <div class="banner-preview-header">
+                <span>Banner Active Preview:</span>
+                <button type="button" class="btn-text close-banner-preview" id="closeBannerPreview">✕ Remove</button>
+              </div>
+              <img id="bannerPreviewImg" src="" alt="Banner Preview" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email Body <span class="required">*</span></label>
+            <!-- Toolbar -->
+            <div class="editor-toolbar">
+              <button class="toolbar-btn" data-cmd="bold" title="Bold"><b>B</b></button>
+              <button class="toolbar-btn" data-cmd="italic" title="Italic"><i>I</i></button>
+              <button class="toolbar-btn" data-cmd="underline" title="Underline"><u>U</u></button>
+              <div class="toolbar-sep"></div>
+              <button class="toolbar-btn" data-cmd="insertUnorderedList" title="Bullet List">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 4h10v2H5zM3 4h1v2H3zM5 9h10v2H5zM3 9h1v2H3zM5 14h10v2H5zM3 14h1v2H3z"/></svg>
+              </button>
+              <button class="toolbar-btn" data-cmd="insertOrderedList" title="Numbered List">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M3 4h1v2H3V4zm0 5h1v2H3V9zm0 5h1v2H3v-2zM6 4h10v2H6V4zm0 5h10v2H6V9zm0 5h10v2H6v-2z"/></svg>
+              </button>
+              <div class="toolbar-sep"></div>
+              <button class="toolbar-btn" data-cmd="justifyLeft" title="Align Left">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M2 4h16v2H2V4zm0 4h10v2H2V8zm0 4h14v2H2v-2zm0 4h8v2H2v-2z"/></svg>
+              </button>
+              <button class="toolbar-btn" data-cmd="justifyCenter" title="Align Center">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M2 4h16v2H2V4zm3 4h10v2H5V8zm-2 4h14v2H3v-2zm3 4h8v2H6v-2z"/></svg>
+              </button>
+              <div class="toolbar-sep"></div>
+              <select class="toolbar-select" id="fontSizeSelect">
+                <option value="1">Small</option>
+                <option value="3" selected>Normal</option>
+                <option value="4">Large</option>
+                <option value="5">X-Large</option>
+              </select>
+              <select class="toolbar-select" id="fontColorSelect">
+                <option value="#202124">Default</option>
+                <option value="#1a73e8">Blue</option>
+                <option value="#ea4335">Red</option>
+                <option value="#34a853">Green</option>
+                <option value="#fbbc04">Yellow</option>
+              </select>
+            </div>
+            <div id="emailBody" class="rich-editor" contenteditable="true" data-placeholder="Write your email content here... Use the toolbar above to format text."></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Attachment <span class="optional">(optional)</span></label>
+            <div class="file-attach-zone" id="attachDropZone">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span id="attachLabel">Click to attach a file or drag & drop</span>
+              <input type="file" id="attachmentInput" hidden />
+            </div>
+            <div class="attachment-preview" id="attachmentPreview" hidden>
+              <svg viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div class="attach-file-info">
+                <span class="attach-file-name" id="attachFileName"></span>
+                <span class="attach-file-size" id="attachFileSize"></span>
+              </div>
+              <button class="btn-text btn-danger-text" id="removeAttachBtn">Remove</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Live mini-preview -->
+        <div class="composer-preview-area">
+          <div class="mini-preview-card">
+            <div class="mini-preview-header">
+              <span>📧 Inbox Preview</span>
+            </div>
+            <div class="mini-banner-preview" id="miniBannerPreview" hidden>
+              <img id="miniBannerImg" src="" alt="Banner Preview" />
+            </div>
+            <div class="inbox-row-preview">
+              <div class="inbox-avatar">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+              <div class="inbox-row-content">
+                <div class="inbox-sender-name" id="previewSenderName">Your Name</div>
+                <div class="inbox-subject-line" id="previewSubjectLine">Email Subject</div>
+                <div class="inbox-body-snippet" id="previewBodySnippet">Email preview will appear here...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-footer">
+        <button class="btn-outline btn-lg" id="step2BackBtn">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Back
+        </button>
+        <button class="btn-primary btn-lg" id="step2ContinueBtn">
+          Preview Email
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────── STEP 3: PREVIEW -->
+    <section class="step-panel" id="panel-3">
+      <div class="panel-header">
+        <h2>Email Preview</h2>
+        <p class="panel-sub">Review how your email will look on desktop and mobile before sending.</p>
+      </div>
+
+      <div class="preview-controls">
+        <div class="preview-toggle-group">
+          <button class="preview-toggle-btn active" id="toggleDesktop">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Desktop
+          </button>
+          <button class="preview-toggle-btn" id="toggleMobile">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="2" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="18" r="1" fill="currentColor"/></svg>
+            Mobile
+          </button>
+        </div>
+
+        <div class="preview-actions">
+          <button class="btn-outline" id="sendTestEmailBtn">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Send Test Email
+          </button>
+        </div>
+      </div>
+
+      <div class="preview-frame-wrapper" id="previewFrameWrapper">
+        <div class="preview-device-wrapper desktop" id="previewDeviceWrapper">
+          <iframe id="previewIframe" class="preview-iframe" title="Email Preview"></iframe>
+        </div>
+      </div>
+
+      <div class="panel-footer">
+        <button class="btn-outline btn-lg" id="step3BackBtn">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Back to Compose
+        </button>
+        <button class="btn-success btn-lg" id="sendAllBtn">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Send to All Recipients
+        </button>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────── STEP 4: SENDING/DONE -->
+    <section class="step-panel" id="panel-4">
+      <div class="panel-header">
+        <h2>Sending Campaign</h2>
+        <p class="panel-sub">Please wait while your emails are being sent.</p>
+      </div>
+      <div class="send-status-area">
+        <div class="send-progress-card" id="sendProgressCard">
+          <div class="progress-icon-anim">
+            <svg class="spinner-ring" viewBox="0 0 50 50"><circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="4"/></svg>
+          </div>
+          <h3 id="sendStatusTitle">Sending Emails…</h3>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar" id="sendProgressBar" style="width:0%"></div>
+          </div>
+          <p class="send-status-text" id="sendStatusText">Preparing campaign…</p>
+        </div>
+
+        <div class="send-results-card" id="sendResultsCard" hidden>
+          <div class="result-icon success">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 0 0 1.946-.806 3.42 3.42 0 0 1 4.438 0 3.42 3.42 0 0 0 1.946.806 3.42 3.42 0 0 1 3.138 3.138 3.42 3.42 0 0 0 .806 1.946 3.42 3.42 0 0 1 0 4.438 3.42 3.42 0 0 0-.806 1.946 3.42 3.42 0 0 1-3.138 3.138 3.42 3.42 0 0 0-1.946.806 3.42 3.42 0 0 1-4.438 0 3.42 3.42 0 0 0-1.946-.806 3.42 3.42 0 0 1-3.138-3.138 3.42 3.42 0 0 0-.806-1.946 3.42 3.42 0 0 1 0-4.438 3.42 3.42 0 0 0 .806-1.946 3.42 3.42 0 0 1 3.138-3.138z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 id="resultTitle">Campaign Sent!</h3>
+          <p id="resultSubtitle">All emails have been processed.</p>
+          <div class="result-stats">
+            <div class="result-stat-item success-stat">
+              <span class="result-stat-num" id="resultSuccess">0</span>
+              <span class="result-stat-lbl">Sent</span>
+            </div>
+            <div class="result-stat-item fail-stat">
+              <span class="result-stat-num" id="resultFailed">0</span>
+              <span class="result-stat-lbl">Failed</span>
+            </div>
+          </div>
+          <div class="result-actions">
+            <button class="btn-outline" id="viewHistoryBtn">View History</button>
+            <button class="btn-primary" id="newCampaignBtn">New Campaign</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════ MODALS -->
+
+  <!-- Confirm Send Modal -->
+  <div class="modal-overlay" id="confirmSendModal" hidden>
+    <div class="modal-card">
+      <div class="modal-icon warning">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="currentColor" stroke-width="2"/><line x1="12" y1="9" x2="12" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <h3 class="modal-title">Confirm Send</h3>
+      <p class="modal-body">You are about to send <strong id="confirmRecipientCount">0</strong> emails with subject:<br><strong id="confirmSubject" class="subject-display"></strong></p>
+      <p class="modal-note">This action cannot be undone. Emails will be sent immediately.</p>
+      <div class="modal-actions">
+        <button class="btn-outline" id="cancelSendBtn">Cancel</button>
+        <button class="btn-success" id="confirmSendBtn">Send Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Send Test Email Modal -->
+  <div class="modal-overlay" id="testEmailModal" hidden>
+    <div class="modal-card">
+      <h3 class="modal-title">Send Test Email</h3>
+      <p class="modal-body">Enter your email address to receive a test preview of this campaign.</p>
+      <div class="form-group">
+        <label class="form-label">Your Email Address</label>
+        <input type="email" id="testEmailInput" class="form-input" placeholder="your@email.com" />
+      </div>
+      <div class="modal-actions">
+        <button class="btn-outline" id="cancelTestEmailBtn">Cancel</button>
+        <button class="btn-primary" id="confirmTestEmailBtn">Send Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- History Modal -->
+  <div class="modal-overlay" id="historyModal" hidden>
+    <div class="modal-card modal-wide">
+      <div class="modal-header-row">
+        <h3 class="modal-title">Email History</h3>
+        <button class="btn-icon" id="closeHistoryModal">✕</button>
+      </div>
+      <div class="history-table-wrap">
+        <div id="historyLoading" class="loading-spinner-sm">Loading…</div>
+        <table class="history-table" id="historyTable" hidden>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Subject</th>
+              <th>Recipient</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="historyTableBody"></tbody>
+        </table>
+        <div id="historyEmpty" class="empty-state-sm" hidden>No history found.</div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-primary" id="closeHistoryBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="modal-overlay" id="settingsModal" hidden>
+    <div class="modal-card">
+      <div class="modal-header-row">
+        <h3 class="modal-title">Settings</h3>
+        <button class="btn-icon" id="closeSettingsModal">✕</button>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Google Apps Script URL</label>
+        <input type="url" id="gasUrlInput" class="form-input" placeholder="https://script.google.com/macros/s/YOUR_ID/exec" />
+        <p class="form-hint">Paste the deployed GAS Web App URL here. It's stored locally in your browser.</p>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Default Test Email</label>
+        <input type="email" id="defaultTestEmail" class="form-input" placeholder="test@example.com" />
+      </div>
+      <div class="modal-actions">
+        <button class="btn-outline" id="cancelSettingsBtn">Cancel</button>
+        <button class="btn-primary" id="saveSettingsBtn">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ════════════════════════════════════════════════════════════ SCRIPTS -->
+  <script src="js/auth.js"></script>
+  <script src="js/conect.js"></script>
+  <script src="js/connect.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/recipients.js"></script>
+  <script src="js/composer.js"></script>
+  <script src="js/preview.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
