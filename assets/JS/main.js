@@ -174,11 +174,39 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 2. Sticky Navbar Effect
+  // 1c. PS Sources Background Video (code2.mp4)
+  // ==========================================
+  const psSourcesVideo = document.getElementById('psSourcesVideo');
+  if (psSourcesVideo) {
+    psSourcesVideo.muted = true;
+    psSourcesVideo.playsInline = true;
+
+    const playPsPromise = psSourcesVideo.play();
+    if (playPsPromise !== undefined) {
+      playPsPromise.catch(() => {
+        psSourcesVideo.muted = true;
+        psSourcesVideo.play().catch(() => {});
+      });
+    }
+
+    if ('IntersectionObserver' in window) {
+      const psVidObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && psSourcesVideo.paused) {
+            psSourcesVideo.play().catch(() => {});
+          }
+        });
+      }, { threshold: 0.1 });
+      psVidObserver.observe(psSourcesVideo);
+    }
+  }
+
+  // ==========================================
+  // 2. Sticky Navbar — Transparent on scroll, solid at top
   // ==========================================
   const navbar = document.querySelector('.navbar');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 20) {
+    if (window.scrollY > 80) {
       navbar?.classList.add('scrolled');
     } else {
       navbar?.classList.remove('scrolled');
