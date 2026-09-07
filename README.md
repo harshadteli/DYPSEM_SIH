@@ -10,8 +10,7 @@ Official responsive web application for the **India Smart Hackathon (SIH)** orga
 > **Motto**: THINK. BUILD. SOLVE.  
 > **Tagline**: *"Ideas + Innovation = Impact • One Challenge. Endless Possibilities."*  
 > **Grand Finale Date**: **11 September 2026**  
-> **Registration Form**: [https://forms.gle/QCQWTcSJoKSEKExD9](https://forms.gle/QCQWTcSJoKSEKExD9)
-
+> **Registration Form**: [https://dypsih.unaux.com](https://dypsih.unaux.com)
 ---
 
 ## 📌 Table of Contents
