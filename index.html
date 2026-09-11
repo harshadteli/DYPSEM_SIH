@@ -88,7 +88,7 @@
     rel="stylesheet">
 
   <!-- Core Stylesheet with Cache-Busting Version for ProFreeHost / Linux Web Hosting -->
-  <link rel="stylesheet" href="assets/CSS/style.css?v=3.2.7">
+  <link rel="stylesheet" href="assets/CSS/style.css?v=3.2.8">
   <!-- Structured event data -->
   <script type="application/ld+json">
 {
@@ -175,12 +175,12 @@
 
       <!-- Action Buttons -->
       <div class="nav-actions">
-        <a href="https://forms.gle/QCQWTcSJoKSEKExD9" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        <a href="#progress-dashboard" class="btn btn-primary">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
             <path
-              d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" />
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
           </svg>
-          Register Now
+          View SIH Status
         </a>
         <button class="mobile-toggle" id="mobileNavToggle" aria-label="Toggle Navigation Menu">
           <span></span>
@@ -223,7 +223,7 @@
             <path
               d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
           </svg>
-          <span><strong>Last Date to Register: 9 September 2026</strong></span>
+          <span><strong>Registration Closed</strong></span>
         </div>
         <div class="event-date-chip">
           <svg class="date-calendar-icon" viewBox="0 0 24 24">
@@ -264,14 +264,14 @@
 
       <!-- CTA Buttons -->
       <div class="hero-cta-group hero-cta-group--center">
-        <!-- Primary: Register -->
-        <a href="https://forms.gle/QCQWTcSJoKSEKExD9" target="_blank" rel="noopener noreferrer"
+        <!-- Primary: View SIH Status -->
+        <a href="#progress-dashboard"
           class="btn btn-primary btn-lg">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
             <path
-              d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
           </svg>
-          Register Now
+          View SIH Status
         </a>
         <!-- Accent: View Event Roadmap → scrolls to #timeline -->
         <a href="#timeline" class="btn btn-hero-roadmap btn-lg" id="heroRoadmapBtn"
@@ -871,17 +871,17 @@
           <div class="timeline-dot"></div>
           <div class="timeline-content">
             <div class="timeline-header">
-              <span class="timeline-stage"><span class="live-status-dot"></span> Stage 01 • Active Now</span>
-              <span class="timeline-date date-urgent">Last Date: 9 September 2026</span>
+              <span class="timeline-stage"><span class="live-status-dot"></span> Stage 01 • Closed</span>
+              <span class="timeline-date date-urgent">Last Date: 8 September 2026</span>
             </div>
             <h3 class="timeline-title">Team Formation & Google Form Registration</h3>
             <p class="timeline-desc">
               Form your squad of 6 members (with female participation as per SIH guidelines) and submit your official
-              Google Form registration <strong>before the last date on 9 September 2026</strong>.
+              Google Form registration — <strong>Registration is now closed.</strong>
             </p>
 
             <!-- Active Stage Progress Report Dashboard -->
-            <div class="stage-progress-report">
+            <div class="stage-progress-report" id="progress-dashboard">
               <div class="progress-report-header">
                 <div class="progress-header-left">
                   <span class="report-tag">
@@ -891,16 +891,16 @@
                     </svg>
                     Live Progress Report
                   </span>
-                  <span class="report-status-badge">Phase: Active (Stage 01 of 04)</span>
+                  <span class="report-status-badge">Phase: Grand Finale — Stage 03 of 04</span>
                 </div>
-                <div class="progress-header-right">
-                  <span class="progress-percentage-text">Registration Window: <strong>90% Elapsed</strong></span>
-                </div>
+                <!-- <div class="progress-header-right">
+                  <span class="progress-percentage-text">Grand Finale: <strong>TODAY 🎯 100%</strong></span>
+                </div> -->
               </div>
 
               <!-- Animated Neon Progress Bar -->
               <div class="cyber-progress-track">
-                <div class="cyber-progress-fill" style="width: 90%;">
+                <div class="cyber-progress-fill" style="width: 100%;">
                   <span class="progress-glow-pin"></span>
                 </div>
               </div>
@@ -915,11 +915,11 @@
                   </div>
                   <div class="metric-details">
                     <div class="metric-title">Portal Status</div>
-                    <div class="metric-status" style="color: #00ff9d;">LIVE & OPEN</div>
+                    <div class="metric-status" style="color: #ff4444;">CLOSED</div>
                   </div>
                 </div>
 
-                <div class="progress-metric-item in-progress">
+                <div class="progress-metric-item completed">
                   <div class="metric-icon">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                       <path
@@ -927,12 +927,12 @@
                     </svg>
                   </div>
                   <div class="metric-details">
-                    <div class="metric-title">Team Requirement</div>
-                    <div class="metric-status">6 Members</div>
+                    <div class="metric-title">Registration</div>
+                    <div class="metric-status" style="color: #ff4444;">CLOSED</div>
                   </div>
                 </div>
 
-                <div class="progress-metric-item in-progress">
+                <div class="progress-metric-item completed">
                   <div class="metric-icon">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                       <path
@@ -941,11 +941,11 @@
                   </div>
                   <div class="metric-details">
                     <div class="metric-title">Cutoff Date</div>
-                    <div class="metric-status urgent-text">9 September 2026</div>
+                    <div class="metric-status" style="color: #ff4444;">PASSED</div>
                   </div>
                 </div>
 
-                <div class="progress-metric-item upcoming">
+                <div class="progress-metric-item completed">
                   <div class="metric-icon">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                       <path
@@ -954,20 +954,20 @@
                   </div>
                   <div class="metric-details">
                     <div class="metric-title">Grand Finale</div>
-                    <div class="metric-status">11 September 2026</div>
+                    <div class="metric-status" style="color: #00ff9d;">TODAY ✅ 11 Sep 2026</div>
                   </div>
                 </div>
               </div>
 
               <!-- Quick Action Row -->
               <div class="progress-action-row">
-                <a href="https://forms.gle/QCQWTcSJoKSEKExD9" target="_blank"
+                <a href="#progress-dashboard"
                   class="btn btn-primary btn-sm register-pulse-btn">
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                     <path
-                      d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
                   </svg>
-                  Register Team Online (Google Form)
+                  View SIH Status
                 </a>
                 <a href="assets/media/SIH2026-IDEA-Presentation-Format.pptx"
                   download="SIH2026-IDEA-Presentation-Format.pptx" class="btn btn-outline btn-sm">
@@ -983,11 +983,11 @@
         </div>
 
         <!-- Milestone 2 -->
-        <div class="timeline-item ">
+        <div class="timeline-item active">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
             <div class="timeline-header">
-              <span class="timeline-stage">Stage 02</span>
+              <span class="timeline-stage">Stage 02 Closed</span>
               <span class="timeline-date">8 – 10 September</span>
             </div>
             <h3 class="timeline-title">Idea PPT Submission & Shortlisting</h3>
@@ -1026,11 +1026,11 @@
         </div>
 
         <!-- Milestone 3 -->
-        <div class="timeline-item">
+        <div class="timeline-item active">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
             <div class="timeline-header">
-              <span class="timeline-stage">Stage 03 • Grand Finale</span>
+              <span class="timeline-stage">Stage 03 • Grand Finale Active Now</span>
               <span class="timeline-date"
                 style="background-color: var(--google-red-light); color: var(--google-red); font-weight: 700;">11
                 September</span>
@@ -1248,16 +1248,16 @@
           </div>
           <div>
             <div class="deadline-title">
-              <span>⏰ Last Date to Register: 9 September 2026 | Grand Finale: 11 September 2026</span>
+              <span>⏰ Last Date to Register: 8 September 2026 | Grand Finale: 11 September 2026</span>
             </div>
             <p class="deadline-subtitle">
-              All team registrations must be completed online before <strong>9 September 2026</strong>. Shortlisted
+              All team registrations must be completed online before <strong>8 September 2026</strong>. Shortlisted
               teams will compete in the Grand Internal Hackathon Finale on <strong>11 September 2026</strong>.
             </p>
           </div>
         </div>
         <div class="deadline-badge">
-          <span>📅 Last Date: 9 Sept 2026</span>
+          <span>📅 Last Date: 8 Sept 2026</span>
         </div>
       </div>
 
@@ -1474,19 +1474,19 @@
   <!-- CTA Banner Section -->
   <section class="cta-banner-section">
     <div class="container cta-content-wrapper">
-      <span class="cta-tag">Are You Ready? Stay Tuned!</span>
-      <h2 class="cta-title">Register Your Team For SIH Today</h2>
+      <span class="cta-tag">🎯 Grand Finale — 11 September 2026</span>
+      <h2 class="cta-title">Today Is the Grand Finale Day!</h2>
       <p class="cta-subtitle">
-        Secure your squad's place in the India Smart Hackathon SIH at D Y Patil School of Engineering and Management.
-        Entries are processed through the official Google Form.
+        Registration is now closed. The Internal Hackathon &amp; Live Pitch is underway at D Y Patil School of Engineering and Management.
+        Track live results and updates on the official SIH portal.
       </p>
-      <a href="https://forms.gle/QCQWTcSJoKSEKExD9" target="_blank" rel="noopener noreferrer"
+      <a href="#progress-dashboard"
         class="btn cta-btn-white btn-lg">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
           <path
-            d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
         </svg>
-        Complete Registration Form
+        View SIH Status
       </a>
     </div>
   </section>
@@ -1881,12 +1881,12 @@
 
   <!-- Sticky Bottom Bar for Mobile Devices -->
   <div class="sticky-mobile-bar">
-    <a href="https://forms.gle/QCQWTcSJoKSEKExD9" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+    <a href="#progress-dashboard" class="btn btn-primary">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
         <path
-          d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
+          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
       </svg>
-      Register for SIH Now
+      View SIH Status
     </a>
   </div>
 
